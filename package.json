@@ -1,0 +1,30 @@
+{
+  "name": "Task4.1P",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "12.18.3"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "bootstrap-select": "^1.13.18",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "jQuery": "^1.7.4",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.0",
+    "validator": "^13.1.1"
+  },
+  "devDependencies": {},
+  "description": ""
+}
