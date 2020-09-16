@@ -21,7 +21,9 @@ app.get('/SignUp.html', (req,res)=>{
 app.get('/SignIn.html', (req,res)=>{
     res.sendFile(__dirname + "/SignIn.html")
 })
-
+app.get('/google.html', (req,res)=>{
+    res.sendFile(__dirname + "/google.html")
+})
 //connect to the app by altas
 mongoose.connect("mongodb+srv://luozhongtain:lzt611789@cluster0.lg159.mongodb.net/The_SignDB_created?retryWrites=true&w=majority", 
 {useNewUrlParser: true});
@@ -105,11 +107,14 @@ app.post('/SignIn.html', (req,res)=>{
         })
 })
 
+app.post('/google.html', (req,res)=>{
+   
+})
 
 let port = process.env.POST;
 if (port == null || port == "") 
 {
-  port = 5500;
+  port = 5000;
 }
 //app.listen(process.env.PORT || 8080)
 app.listen(port, (req,res) => {
