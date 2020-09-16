@@ -106,11 +106,7 @@ app.post('/SignIn.html', (req,res)=>{
 })
 
 
-let port = process.env.POST;
-if (port == null || port == "") 
-{
-  port = 5000;
-}
-//app.listen(process.env.PORT || 8080)
-app.listen(port, (req,res) => {
-    console.log("Server is running on port successfully")})
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
+});
