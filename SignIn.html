@@ -28,11 +28,17 @@
                                   <div class="form-group">
                                     <a class="float-right" href="/SignUp.html">Forgot?</a>
                                     <label>Your password</label>
-                                      <input name="password" class="form-control" placeholder="********" type="input_password" >
+                                      <input name="password" class="form-control" placeholder="********" type="input_password" id="zhanghao">
                                   </div> <!-- form-group// --> 
                                   <div class="form-group"> 
                                   <div class="checkbox">
-                                    <label> <input type="checkbox"> Save password </label>
+                                    <!-- <label> <input type="checkbox"> Save password </label> -->
+                                    <label for="bc"><input id="bc" type="checkbox" name="rememberMe" value="1" />remember Me</label>
+                                    <script>
+                                    localStorage['UserInfo'] = [namevalue, passwordvalue];//记住账号密码[]可以写成JSON文件
+                                    var myunits2 = localStorage['UserInfo'];//获取值
+                                    localStorage.removeItem('UserInfo'),
+                                    </script>
                                   </div> <!-- checkbox .// -->
                                   </div> <!-- form-group// -->  
                                   <div class="form-group">
@@ -53,12 +59,13 @@
                             // The ID token you need to pass to your backend:
                             var id_token = googleUser.getAuthResponse().id_token;
                             console.log("ID Token: " + id_token);
-                            const temp = 1;
-                            if(temp == 1)
-                            {window.location.href="/reqtask.html";temp++;}temp++
+                            window.location.href="/reqtask.html";
                           }
                         </script>
 
+                        
+                        <!-- Save the password -->
+               
             </article>
           </div>
       </div class="col-sm-4">
