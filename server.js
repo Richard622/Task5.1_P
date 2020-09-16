@@ -18,12 +18,10 @@ app.get('/', (req,res)=>{
 app.get('/SignUp.html', (req,res)=>{
     res.sendFile(__dirname + "/SignUp.html")
 })
-app.get('/SignIn.html', (req,res)=>{
-    res.sendFile(__dirname + "/SignIn.html")
+app.get('/reqtask.html', (req,res)=>{
+    res.sendFile(__dirname + "/reqtask.html")
 })
-app.get('/google.html', (req,res)=>{
-    res.sendFile(__dirname + "/google.html")
-})
+
 //connect to the app by altas
 mongoose.connect("mongodb+srv://luozhongtain:lzt611789@cluster0.lg159.mongodb.net/The_SignDB_created?retryWrites=true&w=majority", 
 {useNewUrlParser: true});
