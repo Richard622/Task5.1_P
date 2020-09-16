@@ -3,13 +3,14 @@
   <head>
       <meta charset="utf-8">
       <title>Deakin Sign Up</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="">
-      <meta name="author" content="">
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="607396787403-l37p17k4haf1ien43pgu3om60hlt3sbu.apps.googleusercontent.com">
       <link type="text/css" media="screen" href="css/main.css" rel="stylesheet">
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
+
   </head>
   <body>
       <div class="col-sm-4">
@@ -38,9 +39,26 @@
                                       <button type="submit" class="btn btn-primary btn-block" >Login  </button>
                                   </div> <!-- form-group// -->                                                           
                         </form> <hr>
-                        <p>
-                          <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>Login via Google</a>
-                        </p>
+                        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width: 430px;"></div>
+                        <script>
+                          function onSignIn(googleUser) {
+                            // Useful data for your client-side scripts:
+                            var profile = googleUser.getBasicProfile();
+                            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                            console.log('Full Name: ' + profile.getName());
+                            console.log('Given Name: ' + profile.getGivenName());
+                            console.log('Family Name: ' + profile.getFamilyName());
+                            console.log("Image URL: " + profile.getImageUrl());
+                            console.log("Email: " + profile.getEmail());
+
+                            // The ID token you need to pass to your backend:
+                            var id_token = googleUser.getAuthResponse().id_token;
+                            console.log("ID Token: " + id_token);
+                          }
+                        </script>
+                        <!-- <p>
+                          <a href="/SignGoogle.html" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>Login via Google</a>
+                        </p> -->
                        
                         
             </article>
