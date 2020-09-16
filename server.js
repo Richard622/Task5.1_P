@@ -105,9 +105,6 @@ app.post('/SignIn.html', (req,res)=>{
         })
 })
 
-app.post('/google.html', (req,res)=>{
-   
-})
 
 let port = process.env.POST;
 if (port == null || port == "") 
