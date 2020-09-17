@@ -10,7 +10,102 @@
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+      <script type="text/javascript">
+        window.onload=function onLoginLoaded() {
+          if (isPostBack == "False") {
+            GetLastUser();
+          }
+        }
+         
+        function GetLastUser() {
+          var id = "49BAC005-7D5B-4231-8CEA-16939BEACD67";//GUID
+          var usr = GetCookie(id);
+          if (usr != null) {
+            document.getElementById('email').value = usr;
+          } else {
+            document.getElementById('email').value = "001";
+          }
+          GetPwdAndChk();
+        }
+        function SetPwdAndChk() {
+          //get email
+          var usr = document.getElementById('email').value;
+          //alert("User :" + usr);
+          SetLastUser(usr);
+          if (document.getElementById('chkRememberPwd').checked == true) {
+            //get password
+            var pwd = document.getElementById('password').value;
+            alert("You've been remembered");
+            var expdate = new Date();
+            expdate.setTime(expdate.getTime() + 14 * (24 * 60 * 60 * 1000));
+            //write the inforamtion to Cookie
+            SetCookie(usr, pwd, expdate);
+          } else {
+            ResetCookie();
+          }
+        }
+         
+        function SetLastUser(usr) {
+          var id = "49BAC005-7D5B-4231-8CEA-16939BEACD67";
+          var expdate = new Date();
+          //for only 2 weeks
+          expdate.setTime(expdate.getTime() + 14 * (24 * 60 * 60 * 1000));
+          SetCookie(id, usr, expdate);
+        }
+         
+        function GetPwdAndChk() {
+          var usr = document.getElementById('email').value;
+          var pwd = GetCookie(usr);
+          if (pwd != null) {
+            document.getElementById('chkRememberPwd').checked = true;
+            document.getElementById('password').value = pwd;
+          } else {
+            document.getElementById('chkRememberPwd').checked = false;
+            document.getElementById('password').value = "";
+          }
+        }
+        //取Cookie的值
+         
+        function GetCookie(name) {
+          var arg = name + "=";
+          var alen = arg.length;
+          var clen = document.cookie.length;
+          var i = 0;
+          while (i < clen) {
+            var j = i + alen;
+            //alert(j);
+            if (document.cookie.substring(i, j) == arg) return getCookieVal(j);
+            i = document.cookie.indexOf(" ", i) + 1;
+            if (i == 0) break;
+          }
+          return null;
+        }
+        var isPostBack = "<%= IsPostBack %>";
+         
+        function getCookieVal(offset) {
+          var endstr = document.cookie.indexOf(";", offset);
+          if (endstr == -1) endstr = document.cookie.length;
+          return unescape(document.cookie.substring(offset, endstr));
+        }
+        //To Cookie
+         
+        function SetCookie(name, value, expires) {
+          var argv = SetCookie.arguments;
+          //length = 3
+          var argc = SetCookie.arguments.length;
+          var expires = (argc > 2) ? argv[2] : null;
+          var path = (argc > 3) ? argv[3] : null;
+          var domain = (argc > 4) ? argv[4] : null;
+          var secure = (argc > 5) ? argv[5] : false;
+          document.cookie = name + "=" + escape(value) + ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) + ((path == null) ? "" : ("; path=" + path)) + ((domain == null) ? "" : ("; domain=" + domain)) + ((secure == true) ? "; secure" : "");
+        }
+         
+        function ResetCookie() {
+          var usr = document.getElementById('email').value;
+          var expdate = new Date();
+          SetCookie(usr, null, expdate);
+        }
+      </script>
   </head>
   <body>
       <div class="col-sm-4">
@@ -23,27 +118,23 @@
                           <form method="POST" >
                                   <div class="form-group">
                                     <label>Your email</label>
-                                      <input name="email" class="form-control" placeholder="Email" type="input_email" >
+                                      <input name="email" class="form-control" placeholder="Email" type="input_email" id="email" onblur="GetPwdAndChk()">
                                   </div> <!-- form-group// -->
                                   <div class="form-group">
                                     <a class="float-right" href="/SignUp.html">Forgot?</a>
                                     <label>Your password</label>
-                                      <input name="password" class="form-control" placeholder="********" type="input_password" id="zhanghao">
+                                      <input name="password" class="form-control" placeholder="********" type="input_password" id="password">
                                   </div> <!-- form-group// --> 
                                   <div class="form-group"> 
                                   <div class="checkbox">
                                     <!-- <label> <input type="checkbox"> Save password </label> -->
-                                    <label for="bc"><input id="bc" type="checkbox" name="rememberMe" value="1" />remember Me</label>
-                                    <script>
-                                    localStorage['UserInfo'] = [namevalue, passwordvalue];//记住账号密码[]可以写成JSON文件
-                                    var myunits2 = localStorage['UserInfo'];//获取值
-                                    localStorage.removeItem('UserInfo'),
-                                    </script>
+                                    <label for="bc"><input id="chkRememberPwd" type="checkbox" name="rememberMe" value="1" />remember Me</label>
                                   </div> <!-- checkbox .// -->
                                   </div> <!-- form-group// -->  
                                   <div class="form-group">
-                                      <button type="submit" class="btn btn-primary btn-block" >Login  </button>
-                                  </div> <!-- form-group// -->                                                           
+                                      <button type="submit" class="btn btn-primary btn-block" OnClick="SetPwdAndChk()" >Login  </button>
+                                  </div> <!-- form-group// -->        
+                                                                                   
                         </form> <hr>
                         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width: auto;"></div>
                         <script>
@@ -62,10 +153,10 @@
                             window.location.href="/reqtask.html";
                           }
                         </script>
-
+                         
+                      
                         
                         <!-- Save the password -->
-               
             </article>
           </div>
       </div class="col-sm-4">
