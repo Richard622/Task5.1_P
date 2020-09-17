@@ -4,10 +4,11 @@
       <meta charset="utf-8">
       <title>Deakin Sign Up</title>
       <meta name="google-signin-scope" content="profile email">
-      <meta name="google-signin-client_id" content="607396787403-issje7oi8v51hfiah0ddidfotc2f9mek.apps.googleusercontent.com">
+      <meta name="google-signin-client_id" content="607396787403-vrv5l7gl1123rif2ilg5ugov4bfem7ol.apps.googleusercontent.com">
       <link type="text/css" media="screen" href="css/main.css" rel="stylesheet">
       <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
       <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <script src="https://apis.google.com/js/api.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script type="text/javascript">
@@ -136,7 +137,9 @@
                                   </div> <!-- form-group// -->        
                                                                                    
                         </form> <hr>
+                        <!-- The Google Sign in -->
                         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width: auto;"></div>
+                        <button onclick="signOut()" id="googlesignout">Sign out</button>
                         <script>
                           function onSignIn(googleUser) {
                             // Useful data for your client-side scripts:
@@ -147,16 +150,17 @@
                             console.log('Family Name: ' + profile.getFamilyName());
                             console.log("Image URL: " + profile.getImageUrl());
                             console.log("Email: " + profile.getEmail());
+
                             // The ID token you need to pass to your backend:
                             var id_token = googleUser.getAuthResponse().id_token;
                             console.log("ID Token: " + id_token);
-                            window.location.href="/reqtask.html";
+                          }
+                          function signOut(){
+                            gapi.auth2.getAuthInstance().signOut().them(function(){
+                              alert('user sign out')
+                            })
                           }
                         </script>
-                         
-                      
-                        
-                        <!-- Save the password -->
             </article>
           </div>
       </div class="col-sm-4">
