@@ -127,7 +127,9 @@ app.post('/reset.html', (req, res) => {
             console.log(err)
             return
         }if(data){
-            Student.updateOne({ The_email: req.body.email }, { The_password: req.body.password }, (err, student) => {
+            const hashed = bcrypt.hashSync(password,10);
+
+            Student.updateOne({ The_email: email }, { The_password: hashed }, (err, student) => {
                 if (err) {
                     res.send("Fail to reset the password")
                 } else {
