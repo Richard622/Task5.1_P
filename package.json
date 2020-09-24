@@ -25,9 +25,19 @@
     "jsdom": "^16.4.0",
     "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
+    "nodemailer": "^6.4.11",
+    "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.1",
     "validator": "^13.1.1"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Richard622/Task5.1_P.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Richard622/Task5.1_P/issues"
+  },
+  "homepage": "https://github.com/Richard622/Task5.1_P#readme",
   "description": ""
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link type="text/css" href="/public/css/bootstrap.css" rel="stylesheet">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" media="screen" href="public/css/reset.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <h1>Please input email firstly</h1><br>
+    <form action="/reset" method="POST">
+        <label for="email">Email*</label>
+        <input type="text" name="email">
+        <label for="name">Your name*</label>
+        <input  type="text" name="name">
+        <label> New password </label>
+        <input name="password" type="password"  placeholder="">
+    </form></div>
+</body>
+</html>

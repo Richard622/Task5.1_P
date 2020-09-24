@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 const validator = require("validator")
 const bcrypt = require("bcrypt")
 const router = express.Router();
-
+const mail = require("./mail")
 
 const app = express()
 app.use(bodyParser.urlencoded({extended: true}))
@@ -24,6 +24,13 @@ app.get('/reqtask.html', (req,res)=>{
 app.get('/SignIn.html', (req,res)=>{
     res.sendFile(__dirname + "/SignIn.html")
 })
+app.get('/forget.html', (req,res)=>{
+    res.sendFile(__dirname + "/forget.html")
+})
+app.get('/reset.html', (req,res)=>{
+    res.sendFile(__dirname + "/reset.html")
+})
+
 
 //connect to the app by altas
 mongoose.connect("mongodb+srv://luozhongtain:lzt611789@cluster0.lg159.mongodb.net/The_SignDB_created?retryWrites=true&w=majority", 
@@ -108,8 +115,49 @@ app.post('/SignIn.html', (req,res)=>{
         })
 })
 
+app.post('/reset', (req, res) => {
+    User.findOne({ email: req.body.email }, (err, data) => {
+        if (err) {
+            console.log(err)
+            return
+        } else if (data.name != req.body.name) {
+            res.send("wrong information")
+        } else {
+            User.updateOne({ email: req.body.email }, { password: req.body.password }, (err, user) => {
+                if (err) {
+                    res.send("Fail to reset")
+                } else {
+                    res.send("reset password successfully!")
+                }
+            })
+        }
+    })
+})
 
-var port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", function() {
-console.log("Listening on Port 3000");
+app.post('/send', function (req, res) {
+    mail.send({
+        from: '963023526@qq.com', // sender
+        to: req.body.email,
+        subject: 'Change your password',
+        text: 'Change your password',
+        html: '<a href="http://localhost:3000/reset">click this link to reset your password</a>'
+    });
+    res.send("Email has been sent successfully")
 });
+
+app.post('/forget', (req, res) => {
+    res.redirect("forget")
+})
+
+// var port = process.env.PORT || 3000;
+// app.listen(port, "0.0.0.0", function() {
+// console.log("Listening on Port 3000");
+// });
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+
+app.listen(port, (req, res) => {
+    console.log("Server is running successfully")
+})
