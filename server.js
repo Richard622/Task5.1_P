@@ -135,8 +135,8 @@ app.post('/reset.html', (req, res) => {
                 }
             })
         }
+    })
 })
-
 
 app.post('/send', function (req, res) {
     mail.send({
