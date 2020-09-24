@@ -119,9 +119,7 @@ app.post('/SignIn.html', (req,res)=>{
 
 app.post('/reset', (req, res) => {
 
-    Student.findOne({ email: req.body.email }, (err, data) => {
-    
-        const email = req.body.email
+    const email = req.body.email
     const password = req.body.password
     var condition = {'The_email' : email}
     Student.findOne(condition, (err,data)=>{
@@ -130,7 +128,7 @@ app.post('/reset', (req, res) => {
             return
         }if(data){
             
-            console.log(data.The_password)
+            alert(data.The_password)
             
         }
         
@@ -146,8 +144,8 @@ app.post('/reset', (req, res) => {
         //         })
         //     }
         })
-    })
 })
+
 
 app.post('/send', function (req, res) {
     mail.send({
