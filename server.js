@@ -118,6 +118,7 @@ app.post('/SignIn.html', (req,res)=>{
 })
 
 app.post('/reset', (req, res) => {
+
     Student.findOne({ email: req.body.email }, (err, data) => {
         if (err) {
             console.log(err)
@@ -125,7 +126,7 @@ app.post('/reset', (req, res) => {
         } else if (data.name != req.body.name) {
             res.send("wrong information")
         } else {
-            Student.updateOne({ email: req.body.email }, { password: req.body.password }, (err, user) => {
+            Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
                 if (err) {
                     res.send("Fail to reset")
                 } else {
