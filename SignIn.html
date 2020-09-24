@@ -11,35 +11,7 @@
       <script src="https://apis.google.com/js/api.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://apis.google.com/js/platform.js" async defer></script>
-      <script>function mailsend(){
-        var nodemailer = require('nodemailer');
-        var transporter = nodemailer.createTransport({
-        service: 'qq',
-        auth: {
-        user: '963023526@qq.com',
-        pass: 'lfajuwlbvdbkbfba' //
-    
-        }
-        });
-        var mailOptions = {
-        from: '963023526@qq.com', // sender
-        to: '963023526@qq.com', // recevier
-        subject: 'nodemailer2.5.0邮件发送', //title
-    
-        html: `<h1>Click to Change the Password:</h1><h3>
-        <a href="http://blog.csdn.net/zzwwjjdj1/article/details/51878392">
-        http://blog.csdn.net/zzwwjjdj1/article/details/51878392</a></h3>` 
-        };
-    
-        transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-        console.log(err);
-        return;
-        }
-    
-        console.log('Sending successfully');
-        });
-    }</script>
+      
       <script type="text/javascript">
         window.onload=function onLoginLoaded() {
           if (isPostBack == "False") {

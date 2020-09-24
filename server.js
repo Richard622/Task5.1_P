@@ -117,7 +117,7 @@ app.post('/SignIn.html', (req,res)=>{
         })
 })
 
-app.post('/reset', (req, res) => {
+app.post('/reset.html', (req, res) => {
 
     const email = req.body.email
     const password = req.body.password
@@ -127,23 +127,15 @@ app.post('/reset', (req, res) => {
             console.log(err)
             return
         }if(data){
-            
-            alert(data.The_password)
-            
-        }
-        
-        // else if (data.The_name != req.body.name) {
-        //     res.send("wrong information")
-        // } else {
-        //         Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
-        //             if (err) {
-        //                 res.send("Fail to reset")
-        //             } else {
-        //                 alert("reset password successfully!")
-        //             }
-        //         })
-        //     }
-        })
+            Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
+                if (err) {
+                    res.send("Fail to reset")
+                } else {
+                    alert("reset password successfully!")
+                }
+            })
+        } 
+    })    
 })
 
 
