@@ -127,16 +127,14 @@ app.post('/reset.html', (req, res) => {
             console.log(err)
             return
         }if(data){
-            alert("aaaaaaaaaaaa")
-            // Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
-            //     if (err) {
-            //         res.send("Fail to reset")
-            //     } else {
-            //         alert("reset password successfully!")
-            //     }
-            // })
-        } 
-    })    
+            Student.updateOne({ The_email: req.body.email }, { The_password: req.body.password }, (err, student) => {
+                if (err) {
+                    res.send("Fail to reset the password")
+                } else {
+                    res.send("reset password successfully!")
+                }
+            })
+        }
 })
 
 
