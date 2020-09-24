@@ -90,7 +90,9 @@ app.post('/', (req,res)=>{
         }if(data){
             const hashed = data.The_password
             const temp = bcrypt.compareSync(password, hashed)
-            if(temp == true){res.sendFile(__dirname + "/reqtask.html")}
+            if(temp == true)
+            {
+                res.sendFile(__dirname + "/reqtask.html")}
         }else{
             res.send("/404.html")
             }
