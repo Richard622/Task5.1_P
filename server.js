@@ -140,7 +140,7 @@ app.post('/send', function (req, res) {
         to: req.body.email,
         subject: 'Change your password',
         text: 'Change your password',
-        html: '<a href="https://taskofluo.herokuapp.com/reset">click this link to reset your password</a>'
+        html: '<a href="https://taskofluo.herokuapp.com/reset.html">click this link to reset your password</a>'
     });
     res.send("Email has been sent successfully")
 });
