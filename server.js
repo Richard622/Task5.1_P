@@ -120,20 +120,32 @@ app.post('/SignIn.html', (req,res)=>{
 app.post('/reset', (req, res) => {
 
     Student.findOne({ email: req.body.email }, (err, data) => {
-        if (err) {
+    
+        const email = req.body.email
+    const password = req.body.password
+    var condition = {'The_email' : email}
+    Student.findOne(condition, (err,data)=>{
+        if(err){
             console.log(err)
             return
-        } else if (data.name != req.body.name) {
-            res.send("wrong information")
-        } else {
-            Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
-                if (err) {
-                    res.send("Fail to reset")
-                } else {
-                    alert("reset password successfully!")
-                }
-            })
+        }if(data){
+            
+            console.log(data.The_password)
+            
         }
+        
+        // else if (data.The_name != req.body.name) {
+        //     res.send("wrong information")
+        // } else {
+        //         Student.updateOne({ The_email : req.body.email }, { The_password : req.body.password }, (err, Student) => {
+        //             if (err) {
+        //                 res.send("Fail to reset")
+        //             } else {
+        //                 alert("reset password successfully!")
+        //             }
+        //         })
+        //     }
+        })
     })
 })
 
